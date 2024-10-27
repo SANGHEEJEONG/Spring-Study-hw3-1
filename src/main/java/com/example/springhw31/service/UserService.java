@@ -31,9 +31,9 @@ public class UserService {
     }
 
     public String login(UserDto userDto) {
-        Optional<User> user = userRepository.findByUsername(userDto.getUsername());
+        User user = userRepository.findByUsername(userDto.getUsername()).orElseThrow();
 
-        if(user.isPresent() && user.get().getPassword().equals(userDto.getPassword()))
+        if(user.getPassword().equals(userDto.getPassword()))
           return userDto.getUsername() + "님, 환영합니다!!";
 
         return "아이디 및 비밀번호가 일치하지 않습니다.";
