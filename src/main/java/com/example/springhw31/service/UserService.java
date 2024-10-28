@@ -34,7 +34,7 @@ public class UserService {
         User user = userRepository.findByUsername(userDto.getUsername()).orElseThrow();
 
         if(user.getPassword().equals(userDto.getPassword()))
-          return userDto.getUsername() + "님, 환영합니다!!";
+          return userDto.getNickname() + "님, 환영합니다!!";
 
         return "아이디 및 비밀번호가 일치하지 않습니다.";
     }
